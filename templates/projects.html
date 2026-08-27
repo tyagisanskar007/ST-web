@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Infrastructure Projects Portfolio | Shiv Traders{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-city"></i> Verified Track Record</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Infrastructure Projects Portfolio</h1>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+            Real-world heavy-duty pavements executed across urban street corridors, logistics freight hubs, commercial plazas, and national highways.
+        </p>
+    </div>
+</section>
+
+<!-- Projects Main -->
+<section class="section">
+    <div class="container">
+        <!-- Category Filters -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="Street Development">Street Development</button>
+            <button class="filter-btn" data-filter="Factory Construction">Factory Construction</button>
+            <button class="filter-btn" data-filter="Parking Area">Parking Area</button>
+            <button class="filter-btn" data-filter="Market Development">Market Development</button>
+            <button class="filter-btn" data-filter="Government Infrastructure">Government Infrastructure</button>
+            <button class="filter-btn" data-filter="Interlock Tile Installation">Interlock Installation</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid-3" id="projects-grid">
+            {% for proj in projects %}
+            <div class="project-card filter-item" data-category="{{ proj.category }}">
+                <div class="project-media">
+                    <img src="{{ proj.image_url }}" alt="{{ proj.project_name }}">
+                    <span class="project-status-tag {{ 'completed' if proj.status == 'Completed' else 'in-progress' }}">
+                        {{ proj.status }}
+                    </span>
+                </div>
+                <div class="project-body">
+                    <div class="project-category">{{ proj.category }}</div>
+                    <h3 class="project-title">{{ proj.project_name }}</h3>
+                    <div class="project-meta">
+                        <span><i class="fas fa-map-marker-alt text-gold"></i> {{ proj.location }}</span>
+                        <span><i class="fas fa-ruler-combined text-gold"></i> {{ proj.area_sqft }}</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem; line-height: 1.6;">
+                        {{ proj.description }}
+                    </p>
+                    <a href="{{ url_for('project_details', project_id=proj.project_id) }}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                        <span>Explore Case Study</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 0;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">No projects found in this category.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
