@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shiv Traders Admin Portal{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo-mark">ST</div>
+            <div class="sidebar-brand-name">
+                SHIV TRADERS
+                <span>Management Hub</span>
+            </div>
+        </div>
+
+        <div class="sidebar-nav">
+            <div class="nav-section-title">Overview</div>
+            <ul>
+                <li>
+                    <a href="{{ url_for('admin_dashboard') }}" class="{% if active_admin_page == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section-title">Catalog & Execution</div>
+            <ul>
+                <li>
+                    <a href="{{ url_for('admin_products') }}" class="{% if active_admin_page == 'products' %}active{% endif %}">
+                        <i class="fas fa-boxes"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin_projects') }}" class="{% if active_admin_page == 'projects' %}active{% endif %}">
+                        <i class="fas fa-city"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin_services') }}" class="{% if active_admin_page == 'services' %}active{% endif %}">
+                        <i class="fas fa-tools"></i>
+                        <span>Services</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section-title">Lead Management</div>
+            <ul>
+                <li>
+                    <a href="{{ url_for('admin_enquiries') }}" class="{% if active_admin_page == 'enquiries' %}active{% endif %}">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>Enquiries</span>
+                        {% if stats and stats.new_enquiries > 0 %}
+                        <span class="sidebar-badge">{{ stats.new_enquiries }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-section-title">Enterprise Settings</div>
+            <ul>
+                <li>
+                    <a href="{{ url_for('admin_company') }}" class="{% if active_admin_page == 'company' %}active{% endif %}">
+                        <i class="fas fa-building"></i>
+                        <span>Company Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin_credentials') }}" class="{% if active_admin_page == 'credentials' %}active{% endif %}">
+                        <i class="fas fa-certificate"></i>
+                        <span>Credentials</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin_settings') }}" class="{% if active_admin_page == 'settings' %}active{% endif %}">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings & Cloud</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <h5>{{ session.get('admin_name', 'Administrator') }}</h5>
+                    <p>{{ session.get('admin_email', 'admin@shivtraders.com') }}</p>
+                </div>
+            </div>
+            <a href="{{ url_for('admin_logout') }}" title="Logout" style="color: #ef4444; font-size: 1.1rem;">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ADMIN MAIN WRAPPER -->
+    <div class="admin-main">
+        <header class="admin-header">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button id="admin-sidebar-toggle" style="background:none; border:none; color:var(--text-main); font-size:1.25rem; cursor:pointer;" class="d-md-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-search">
+                    <i class="fas fa-search" style="color: var(--text-dim);"></i>
+                    <input type="text" id="table-search-input" placeholder="Search records, products, enquiries...">
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <!-- Firebase Connection Indicator -->
+                {% if firebase_connected %}
+                <div class="firebase-pill connected" title="Connected to Live Google Cloud Firestore">
+                    <span class="firebase-dot"></span>
+                    <span>Firebase Live</span>
+                </div>
+                {% else %}
+                <div class="firebase-pill local" title="Operating with Local Datastore Engine">
+                    <span class="firebase-dot"></span>
+                    <span>Local Engine</span>
+                </div>
+                {% endif %}
+
+                <a href="{{ url_for('index') }}" target="_blank" class="btn-icon" title="View Public Website">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Flash messages in admin -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="toast-container">
+                    {% for category, message in messages %}
+                        <div class="toast {{ category }}">
+                            <i class="fas {% if category == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                            <span>{{ message }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="admin-body">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Admin Scripts -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
