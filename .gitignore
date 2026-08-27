@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Environment / secrets
+.env
+*.env
+config_local.py
+
+# Firebase service account key (NEVER commit this)
+firebase-adminsdk*.json
+serviceAccountKey.json
+*-firebase-adminsdk-*.json
+
+# Data (local database - contains sensitive info)
+data/local_db.json
+
+# Uploaded files
+static/uploads/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Windows launchers (optional - keep if you want them in repo)
+# START_SHIV_TRADERS.bat
+# START_ADMIN_PORTAL.bat
