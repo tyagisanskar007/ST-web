@@ -1,0 +1,501 @@
+{
+  "company": {
+    "company_id": "main_info",
+    "company_name": "Shiv Traders",
+    "tagline": "Building Strong Foundations. Creating Better Spaces.",
+    "description": "Shiv Traders is a premier manufacturer and infrastructure contractor specializing in high-grade interlocking paver blocks, industrial heavy-duty tiles, and comprehensive infrastructure execution for government, commercial, and industrial developments.",
+    "phone": "+91 98290 12345",
+    "whatsapp_number": "+919829012345",
+    "email": "contact@shivtraders.com",
+    "address": "Plot No. 45-48, RIICO Industrial Area, Phase II",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "pincode": "302013",
+    "country": "India",
+    "gst_number": "08AABCS1429K1Z5",
+    "trademark_information": "Registered Trademark No. 4928172 (Class 19)",
+    "business_hours": "Monday - Saturday: 8:00 AM - 7:30 PM (Sunday by Appointment)",
+    "founding_year": "2018",
+    "experience_years": "8+",
+    "total_area_paved": "3 Million+ Sq. Ft.",
+    "daily_capacity": "7,000+ Sq. Ft. / Day",
+    "quality_certification": "ISO 9001:2015 & BIS IS-15658:2021 Compliant",
+    "updated_at": "2026-08-27T05:44:00.000000"
+  },
+  "users": {
+    "admin_1": {
+      "user_id": "admin_1",
+      "email": "sanskartyagi007.com@gmail.com",
+      "password_hash": "scrypt:32768:8:1$p1ST8SNBtV2pTrI8$f7be4e73fad87601db95593fb39f25d8cfd132c6a6d369165a728f68d208ae5e72aa70eac1270ce7f016a04a09fe50c6be5e34adaf5210a150df60199c2498ab",
+      "name": "Shiv Traders Administrator",
+      "role": "Super Admin",
+      "created_at": "2026-08-27T04:13:42.353178"
+    }
+  },
+  "products": {
+    "prod-1787786019": {
+      "name": "Dumble",
+      "category": "Interlock Tiles",
+      "thickness": "80mm/60mm",
+      "grade": "M40",
+      "compressive_strength": "50",
+      "dimensions": "225mm x 112mm x 80mm",
+      "finish": "",
+      "description": "More demanding in field",
+      "image_url": "/static/uploads/products/d_f28aa8e2.webp",
+      "gallery": [
+        "/static/images/products/zigzag_paver.webp"
+      ],
+      "colors": [
+        "Grey",
+        "Red",
+        "Yellow"
+      ],
+      "applications": [
+        "Toll Plaza",
+        "Heavy vehicles terminals",
+        "etc"
+      ],
+      "available": true,
+      "featured": false,
+      "product_id": "prod-1787786019",
+      "created_at": "2026-08-27T04:43:39.316644",
+      "updated_at": "2026-08-27T05:33:32.358515"
+    },
+    "prod-1787788777": {
+      "name": "Maleno",
+      "category": "Interlock Tiles",
+      "thickness": "80mm/60mm",
+      "grade": "M40",
+      "compressive_strength": "50",
+      "dimensions": "225mm x 112mm x 80mm",
+      "finish": "",
+      "description": "good quality",
+      "image_url": "/static/uploads/products/milano_0e87cb7d.webp",
+      "gallery": [
+        "/static/uploads/products/milano_0e87cb7d.webp"
+      ],
+      "colors": [
+        "Grey",
+        "Red",
+        "Yellow"
+      ],
+      "applications": [
+        "Toll Plaza",
+        "Heavy vehicles terminals",
+        "etc"
+      ],
+      "available": true,
+      "featured": false,
+      "product_id": "prod-1787788777",
+      "created_at": "2026-08-27T05:29:37.259487",
+      "updated_at": "2026-08-27T05:34:09.043332"
+    },
+    "prod-1787788895": {
+      "name": "L shape",
+      "category": "Interlock Tiles",
+      "thickness": "80mm/60mm",
+      "grade": "M40",
+      "compressive_strength": "50",
+      "dimensions": "225mm x 112mm x 80mm",
+      "finish": "",
+      "description": "good quality",
+      "image_url": "/static/uploads/products/l-shape_159dfdb7.webp",
+      "gallery": [
+        "/static/uploads/products/l-shape_159dfdb7.webp"
+      ],
+      "colors": [
+        "Grey",
+        "Black"
+      ],
+      "applications": [
+        "Toll Plaza",
+        "Heavy vehicles terminals",
+        "etc"
+      ],
+      "available": true,
+      "featured": false,
+      "product_id": "prod-1787788895",
+      "created_at": "2026-08-27T05:31:35.759881",
+      "updated_at": "2026-08-27T05:31:35.759881"
+    },
+    "prod-1787788983": {
+      "name": "zig zag",
+      "category": "Interlock Tiles",
+      "thickness": "80mm/60mm",
+      "grade": "M40",
+      "compressive_strength": "50",
+      "dimensions": "225mm x 112mm x 80mm",
+      "finish": "",
+      "description": "high demand",
+      "image_url": "/static/uploads/products/light-weight-durable-zigzag-shaped-interlocking_1b668702.webp",
+      "gallery": [
+        "/static/uploads/products/light-weight-durable-zigzag-shaped-interlocking_1b668702.webp"
+      ],
+      "colors": [
+        "Grey",
+        "Black"
+      ],
+      "applications": [
+        "Toll Plaza",
+        "Heavy vehicles terminals",
+        "etc"
+      ],
+      "available": true,
+      "featured": false,
+      "product_id": "prod-1787788983",
+      "created_at": "2026-08-27T05:33:03.132202",
+      "updated_at": "2026-08-27T05:33:03.132202"
+    }
+  },
+  "projects": {
+    "proj-1": {
+      "project_id": "proj-1",
+      "project_name": "Smart City Urban Corridor Pavement",
+      "category": "Street Development",
+      "location": "Jaipur Urban Boulevard Zone",
+      "area_sqft": "145,000 Sq. Ft.",
+      "completion_date": "2025-11-20",
+      "description": "Comprehensive smart street redevelopment featuring heavy-duty 80mm interlocking pavers, specialized pedestrian tactile tracks, and hydraulic kerb edging for modern urban transit.",
+      "image_url": "/static/images/projects/smart_city_street.webp",
+      "images": [
+        "/static/images/projects/smart_city_street.webp",
+        "/static/images/projects/smart_city_detail.webp"
+      ],
+      "status": "Completed",
+      "featured": true,
+      "created_at": "2025-12-01T10:00:00Z"
+    },
+    "proj-2": {
+      "project_id": "proj-2",
+      "project_name": "Logistics Hub Heavy-Duty Transshipment Yard",
+      "category": "Factory Construction",
+      "location": "Delhi-Mumbai Industrial Freight Corridor",
+      "area_sqft": "380,000 Sq. Ft.",
+      "completion_date": "2025-08-15",
+      "description": "Heavy-duty 100mm M50-grade industrial interlock paving installation engineered to withstand 70-ton multi-axle trailer loading and continuous forklift operations.",
+      "image_url": "/static/images/projects/logistics_yard.webp",
+      "images": [
+        "/static/images/projects/logistics_yard.webp"
+      ],
+      "status": "Completed",
+      "featured": true,
+      "created_at": "2025-09-01T10:00:00Z"
+    },
+    "proj-3": {
+      "project_id": "proj-3",
+      "project_name": "Multi-Level Commercial Complex Parking Arena",
+      "category": "Parking Area",
+      "location": "Central Business District",
+      "area_sqft": "92,000 Sq. Ft.",
+      "completion_date": "2026-01-05",
+      "description": "Dual-shade aesthetic unipaver block layout with integrated drainage slopes, EV charging bay demarcations, and anti-skid entrance ramps.",
+      "image_url": "/static/images/projects/commercial_parking.webp",
+      "images": [
+        "/static/images/projects/commercial_parking.webp"
+      ],
+      "status": "Completed",
+      "featured": true,
+      "created_at": "2026-01-10T10:00:00Z"
+    },
+    "proj-4": {
+      "project_id": "proj-4",
+      "project_name": "Regional Agro-Wholesale Market Development",
+      "category": "Market Development",
+      "location": "State Agricultural Terminal",
+      "area_sqft": "210,000 Sq. Ft.",
+      "completion_date": "2025-05-30",
+      "description": "Robust all-weather paving infrastructure designed for tractor-trailer maneuvers, market loading bays, and heavy produce truck movement.",
+      "image_url": "/static/images/projects/market_terminal.webp",
+      "images": [
+        "/static/images/projects/market_terminal.webp"
+      ],
+      "status": "Completed",
+      "featured": false,
+      "created_at": "2025-06-15T10:00:00Z"
+    },
+    "proj-5": {
+      "project_id": "proj-5",
+      "project_name": "National Highway Toll Plaza Rigid Interlock Paving",
+      "category": "Government Infrastructure",
+      "location": "National Highway NH-48 Section",
+      "area_sqft": "165,000 Sq. Ft.",
+      "completion_date": "2025-10-10",
+      "description": "High-durability M50 interlocking pavement executed strictly under NHAI & MoRTH guidelines to resist extreme braking shear forces at multi-lane toll collection gates.",
+      "image_url": "/static/images/projects/toll_plaza.webp",
+      "images": [
+        "/static/images/projects/toll_plaza.webp"
+      ],
+      "status": "Completed",
+      "featured": true,
+      "created_at": "2025-10-25T10:00:00Z"
+    },
+    "proj-6": {
+      "project_id": "proj-6",
+      "project_name": "Heavy Engineering Plant Internal Road Network",
+      "category": "Interlock Tile Installation",
+      "location": "RIICO Industrial Hub",
+      "area_sqft": "120,000 Sq. Ft.",
+      "completion_date": "2026-04-30",
+      "description": "Turnkey site excavation, WMM sub-base preparation, laser-guided sand bedding, and automated paver block laying for a heavy machinery manufacturing facility.",
+      "image_url": "/static/images/projects/industrial_roads.webp",
+      "images": [
+        "/static/images/projects/industrial_roads.webp"
+      ],
+      "status": "In Progress",
+      "featured": false,
+      "created_at": "2026-02-01T10:00:00Z"
+    }
+  },
+  "services": {
+    "serv-1": {
+      "service_id": "serv-1",
+      "title": "Turnkey Interlock Paving Contracting",
+      "category": "Infrastructure Contracting",
+      "icon": "fa-layer-group",
+      "description": "End-to-end paving contracting from ground surveys, laser leveling, sub-base compaction, to automated laying and edge kerb locking for commercial and industrial hubs.",
+      "features": [
+        "Sub-base compaction & leveling",
+        "High-capacity automated laying",
+        "CPWD & IS-15658 standards compliance",
+        "Comprehensive warranty support"
+      ],
+      "image_url": "/static/images/manufacturing/service_paving.webp"
+    },
+    "serv-2": {
+      "service_id": "serv-2",
+      "title": "Heavy-Duty Industrial Flooring",
+      "category": "Industrial Solutions",
+      "icon": "fa-industry",
+      "description": "Specialized pavement engineering for container freight stations, warehouse docking bays, foundry access routes, and high-axle load zones.",
+      "features": [
+        "M50 / M60 grade heavy pavers",
+        "Shear-resistant interlocking joints",
+        "High point-load capacity",
+        "Quick turnaround minimal downtime"
+      ],
+      "image_url": "/static/images/manufacturing/service_industrial.webp"
+    },
+    "serv-3": {
+      "service_id": "serv-3",
+      "title": "Government & Municipal Roadworks",
+      "category": "Public Infrastructure",
+      "icon": "fa-landmark",
+      "description": "Tender execution and urban redevelopment paving for smart cities, municipal corporation avenues, public parks, and highway median kerbing.",
+      "features": [
+        "Strict PWD/CPWD/MoRTH adherence",
+        "Certified third-party lab testing",
+        "Large-scale daily supply capability",
+        "Dedicated project managers"
+      ],
+      "image_url": "/static/images/manufacturing/service_government.webp"
+    },
+    "serv-4": {
+      "service_id": "serv-4",
+      "title": "Precision Hydraulic Paver Manufacturing",
+      "category": "Manufacturing Prowess",
+      "icon": "fa-cogs",
+      "description": "State-of-the-art automated manufacturing facility utilizing high-pressure vibro-hydraulic pressing, premium 53-grade cement, and German synthetic pigments.",
+      "features": [
+        "50,000+ sq ft daily production capacity",
+        "Uniform density & zero voids",
+        "German UV-stable pigments",
+        "In-house NABL-traceable testing lab"
+      ],
+      "image_url": "/static/images/manufacturing/plant_press.webp"
+    }
+  },
+  "credentials": {
+    "cred-1": {
+      "cred_id": "cred-1",
+      "title": "GST Registration Certificate",
+      "issuer": "Government of India - GSTIN",
+      "registration_number": "08AABCS1429K1Z5",
+      "issue_date": "2017-07-01",
+      "description": "Verified Central & State GST registration for legitimate manufacturing, supply, and works contracting.",
+      "verified": true,
+      "file_url": "/static/images/certificates/gst_certificate.webp"
+    },
+    "cred-2": {
+      "cred_id": "cred-2",
+      "title": "ISO 9001:2015 Quality Management System",
+      "issuer": "International Accreditation Service (IAS)",
+      "registration_number": "ISO-QMS-2023-8841",
+      "issue_date": "2023-04-12",
+      "description": "Certified quality management standard for the manufacture and supply of precast concrete pavers and civil infrastructure contracting.",
+      "verified": true,
+      "file_url": "/static/images/certificates/iso_certificate.webp"
+    },
+    "cred-3": {
+      "cred_id": "cred-3",
+      "title": "Registered Trademark - Class 19",
+      "issuer": "Trade Marks Registry, Govt. of India",
+      "registration_number": "TM-4928172",
+      "issue_date": "2021-03-18",
+      "description": "Exclusive statutory trademark protection for Shiv Traders® building materials and pavers.",
+      "verified": true,
+      "file_url": "/static/images/certificates/tm_certificate.webp"
+    },
+    "cred-4": {
+      "cred_id": "cred-4",
+      "title": "BIS & CPWD Lab Test Conformity Report",
+      "issuer": "NABL Accredited Civil Testing Laboratory",
+      "registration_number": "IS 15658:2021-TR-904",
+      "issue_date": "2025-11-15",
+      "description": "Certified compliance for compressive strength (52.4 N/mm²), water absorption (<4.2%), and abrasion resistance index.",
+      "verified": true,
+      "file_url": "/static/images/certificates/lab_report.webp"
+    }
+  },
+  "enquiries": {
+    "enq-1": {
+      "enquiry_id": "enq-1",
+      "name": "Rajesh Sharma",
+      "company": "Apex Logistics & Warehousing Ltd",
+      "phone": "+91 98290 99887",
+      "email": "r.sharma@apexlogistics.in",
+      "city": "Jaipur",
+      "project_type": "Factory / Logistics Pavement",
+      "quantity": "75,000 Sq. Ft.",
+      "message": "We require M50 grade 80mm zig-zag pavers for our new freight dispatch yard. Please provide an estimate including sub-base laying and delivery timeline.",
+      "status": "In Progress",
+      "created_at": "2026-02-20T14:30:00Z"
+    },
+    "enq-2": {
+      "enquiry_id": "enq-2",
+      "name": "Vikramaditya Chauhan",
+      "company": "Heritage Grand Resorts",
+      "phone": "+91 94140 11223",
+      "email": "infrastructure@heritagegrand.com",
+      "city": "Udaipur",
+      "project_type": "Resort & Architectural Paving",
+      "quantity": "30,000 Sq. Ft.",
+      "message": "Looking for premium hexagonal and grass pavers in terracotta and silver grey shades for driveway and landscaping.",
+      "status": "New",
+      "created_at": "2026-02-25T11:15:00Z"
+    },
+    "enq-3": {
+      "enquiry_id": "enq-3",
+      "name": "Sunil Mittal",
+      "company": "Municipal Infrastructure Consortium",
+      "phone": "+91 97840 55443",
+      "email": "smittal@mici.org",
+      "city": "Kota",
+      "project_type": "Smart City Street Development",
+      "quantity": "120,000 Sq. Ft.",
+      "message": "Tender requirement for CPWD compliant 80mm interlock pavers and hydraulic kerb stones with test batch inspection.",
+      "status": "Contacted",
+      "created_at": "2026-02-22T09:45:00Z"
+    },
+    "enq-1787784222": {
+      "name": "Test Contractor",
+      "phone": "+91 99999 88888",
+      "email": "test@contractor.in",
+      "city": "Jaipur",
+      "company": "Apex Builders",
+      "project_type": "Industrial Pavement",
+      "quantity": "40,000 Sq. Ft.",
+      "message": "Need 80mm M50 interlock pavers quotation.",
+      "status": "New",
+      "created_at": "2026-08-27T04:13:42.550924",
+      "enquiry_id": "enq-1787784222"
+    },
+    "enq-1787784223": {
+      "name": "Status Check User",
+      "phone": "9876543210",
+      "city": "Jaipur",
+      "status": "In Progress",
+      "enquiry_id": "enq-1787784223",
+      "created_at": "2026-08-27T04:13:43.132981",
+      "updated_at": "2026-08-27T04:13:43.138013"
+    },
+    "enq-1787784396": {
+      "name": "Test Contractor",
+      "phone": "+91 99999 88888",
+      "email": "test@contractor.in",
+      "city": "Jaipur",
+      "company": "Apex Builders",
+      "project_type": "Industrial Pavement",
+      "quantity": "40,000 Sq. Ft.",
+      "message": "Need 80mm M50 interlock pavers quotation.",
+      "status": "New",
+      "created_at": "2026-08-27T04:16:36.438191",
+      "enquiry_id": "enq-1787784396"
+    },
+    "enq-1787784397": {
+      "name": "Status Check User",
+      "phone": "9876543210",
+      "city": "Jaipur",
+      "status": "In Progress",
+      "enquiry_id": "enq-1787784397",
+      "created_at": "2026-08-27T04:16:37.126784",
+      "updated_at": "2026-08-27T04:16:37.131785"
+    },
+    "enq-1787787536": {
+      "name": "Test Contractor",
+      "phone": "+91 99999 88888",
+      "email": "test@contractor.in",
+      "city": "Jaipur",
+      "company": "Apex Builders",
+      "project_type": "Industrial Pavement",
+      "quantity": "40,000 Sq. Ft.",
+      "message": "Need 80mm M50 interlock pavers quotation.",
+      "status": "New",
+      "created_at": "2026-08-27T05:08:56.535982",
+      "enquiry_id": "enq-1787787536"
+    },
+    "enq-1787787553": {
+      "name": "Status Check User",
+      "phone": "9876543210",
+      "city": "Jaipur",
+      "status": "In Progress",
+      "enquiry_id": "enq-1787787553",
+      "created_at": "2026-08-27T05:09:13.023728",
+      "updated_at": "2026-08-27T05:09:13.654636"
+    },
+    "enq-1787789797": {
+      "name": "Test Contractor",
+      "phone": "+91 99999 88888",
+      "email": "test@contractor.in",
+      "city": "Jaipur",
+      "company": "Apex Builders",
+      "project_type": "Industrial Pavement",
+      "quantity": "40,000 Sq. Ft.",
+      "message": "Need 80mm M50 interlock pavers quotation.",
+      "status": "New",
+      "created_at": "2026-08-27T05:46:37.924867",
+      "enquiry_id": "enq-1787789797"
+    },
+    "enq-1787789814": {
+      "name": "Status Check User",
+      "phone": "9876543210",
+      "city": "Jaipur",
+      "status": "In Progress",
+      "enquiry_id": "enq-1787789814",
+      "created_at": "2026-08-27T05:46:54.830867",
+      "updated_at": "2026-08-27T05:46:55.652980"
+    },
+    "enq-1787789859": {
+      "name": "Test Contractor",
+      "phone": "+91 99999 88888",
+      "email": "test@contractor.in",
+      "city": "Jaipur",
+      "company": "Apex Builders",
+      "project_type": "Industrial Pavement",
+      "quantity": "40,000 Sq. Ft.",
+      "message": "Need 80mm M50 interlock pavers quotation.",
+      "status": "New",
+      "created_at": "2026-08-27T05:47:39.398879",
+      "enquiry_id": "enq-1787789859"
+    },
+    "enq-1787789875": {
+      "name": "Status Check User",
+      "phone": "9876543210",
+      "city": "Jaipur",
+      "status": "In Progress",
+      "enquiry_id": "enq-1787789875",
+      "created_at": "2026-08-27T05:47:55.422746",
+      "updated_at": "2026-08-27T05:47:56.084383"
+    }
+  }
+}
