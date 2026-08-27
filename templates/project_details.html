@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.project_name }} | Shiv Traders Projects{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Bar -->
+<div style="background: #090a0d; padding: 1.25rem 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.88rem;">
+    <div class="container">
+        <a href="{{ url_for('index') }}" style="color: var(--text-muted);">Home</a>
+        <span style="color: var(--text-muted); margin: 0 0.5rem;">/</span>
+        <a href="{{ url_for('projects') }}" style="color: var(--text-muted);">Projects</a>
+        <span style="color: var(--text-muted); margin: 0 0.5rem;">/</span>
+        <span style="color: var(--gold-light);">{{ project.project_name }}</span>
+    </div>
+</div>
+
+<!-- Project Details Main -->
+<section class="section">
+    <div class="container grid-2" style="align-items: start; gap: 3.5rem;">
+        <!-- Left: Image Gallery -->
+        <div>
+            <div style="background: var(--bg-surface-card); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); margin-bottom: 1.5rem;">
+                <img id="main-proj-img" src="{{ project.image_url }}" alt="{{ project.project_name }}" style="width: 100%; height: 440px; object-fit: cover;">
+            </div>
+
+            {% if project.images and project.images|length > 1 %}
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                {% for img in project.images %}
+                <div onclick="document.getElementById('main-proj-img').src='{{ img }}'" style="width: 95px; height: 80px; border-radius: var(--radius-sm); overflow: hidden; border: 2px solid var(--border-medium); cursor: pointer; transition: var(--transition);">
+                    <img src="{{ img }}" alt="Project gallery" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right: Case Study Info -->
+        <div>
+            <div class="section-tag"><i class="fas fa-city"></i> {{ project.category }}</div>
+            <h1 style="font-size: 2.4rem; margin-bottom: 1rem; color: #fff;">{{ project.project_name }}</h1>
+            <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+                {{ project.description }}
+            </p>
+
+            <!-- Project Metrics Table -->
+            <div class="card-panel" style="margin-bottom: 2rem; border-color: var(--border-medium);">
+                <div class="panel-header" style="background: var(--bg-surface-elevated);">
+                    <h3>Project Execution Profile</h3>
+                </div>
+                <table class="admin-table">
+                    <tbody>
+                        <tr>
+                            <td style="color: var(--text-muted); width: 40%; font-weight: 600;">Location</td>
+                            <td style="color: #fff; font-weight: 700;">{{ project.location }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Total Pavement Area</td>
+                            <td style="color: var(--gold-light); font-weight: 700;">{{ project.area_sqft }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Sector / Category</td>
+                            <td style="color: #fff;">{{ project.category }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Completion Date</td>
+                            <td style="color: #fff;">{{ project.completion_date }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Execution Status</td>
+                            <td>
+                                <span class="badge {% if project.status == 'Completed' %}badge-completed{% else %}badge-in-progress{% endif %}">
+                                    {{ project.status }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Call to Action -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg" style="flex: 1;">
+                    <i class="fas fa-paper-plane"></i> Plan a Similar Project
+                </a>
+                <a href="{{ url_for('projects') }}" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
