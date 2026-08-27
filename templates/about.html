@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}About Us | Shiv Traders - Heritage & Engineering Excellence{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-building"></i> Our Story & Engineering Philosophy</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Building Strong Foundations with Precision</h1>
+        <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-size: 1.15rem;">
+            Over a decade of manufacturing superior precast concrete pavers and delivering mission-critical civil infrastructure contracting.
+        </p>
+    </div>
+</section>
+
+<!-- Company History & Vision -->
+<section class="section">
+    <div class="container grid-2">
+        <div>
+            <div class="section-tag"><i class="fas fa-shield-alt"></i> Heritage</div>
+            <h2 style="font-size: 2.3rem; margin-bottom: 1.5rem;">A Pioneer in Precast Concrete Infrastructure</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 1.05rem; line-height: 1.7;">
+                Founded with the vision to modernize roadway and industrial pavements across India, <strong>Shiv Traders</strong> has evolved into an integrated manufacturing and infrastructure powerhouse.
+            </p>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+                We operate high-capacity, fully automated hydraulic pressing plants in Rajasthan, delivering certified interlocking pavers and kerb stones daily to government bodies, industrial freight corridors, logistics parks, and private enterprises.
+            </p>
+            <div class="hero-stats-banner" style="border: none; padding-top: 0;">
+                <div class="hero-stat-card">
+                    <h3>{{ company.experience_years if company else '8+' }}</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="hero-stat-card">
+                    <h3>{{ company.total_area_paved if company else '3 Million+' }}</h3>
+                    <p>Sq. Ft. Laid</p>
+                </div>
+                <div class="hero-stat-card">
+                    <h3>100%</h3>
+                    <p>BIS Compliance</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+                <img src="{{ url_for('static', filename='images/manufacturing/plant_press.webp') }}" alt="Shiv Traders Factory">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quality Testing Standards & Benchmarks -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-microscope"></i> Rigorous Quality Assurance</div>
+            <h2>Engineering Benchmarks & Testing Standards</h2>
+            <p>Every batch of Shiv Traders pavers undergoes mandatory destructive and non-destructive laboratory testing.</p>
+        </div>
+
+        <div class="grid-4">
+            <div class="form-card" style="padding: 1.75rem; text-align: center;">
+                <div class="floating-card-icon" style="margin: 0 auto 1rem auto;">
+                    <i class="fas fa-dumbbell text-gold"></i>
+                </div>
+                <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.15rem;">Compressive Strength</h4>
+                <p style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">40 - 60 N/mm²</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Tested on digital compression testing machines (CTM) as per IS-15658:2021.</p>
+            </div>
+
+            <div class="form-card" style="padding: 1.75rem; text-align: center;">
+                <div class="floating-card-icon" style="margin: 0 auto 1rem auto;">
+                    <i class="fas fa-tint-slash text-gold"></i>
+                </div>
+                <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.15rem;">Water Absorption</h4>
+                <p style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">&lt; 5.0% by Weight</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Guarantees zero efflorescence and superior freeze-thaw durability.</p>
+            </div>
+
+            <div class="form-card" style="padding: 1.75rem; text-align: center;">
+                <div class="floating-card-icon" style="margin: 0 auto 1rem auto;">
+                    <i class="fas fa-road text-gold"></i>
+                </div>
+                <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.15rem;">Abrasion Resistance</h4>
+                <p style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">&lt; 2.0 mm Loss</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">High surface resistance tested under rotating disc abrasion tests.</p>
+            </div>
+
+            <div class="form-card" style="padding: 1.75rem; text-align: center;">
+                <div class="floating-card-icon" style="margin: 0 auto 1rem auto;">
+                    <i class="fas fa-ruler-combined text-gold"></i>
+                </div>
+                <h4 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.15rem;">Dimensional Tolerance</h4>
+                <p style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">&plusmn; 2.0 mm</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Precision CNC-machined steel moulds for seamless interlocking joints.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values & Commitment -->
+<section class="section">
+    <div class="container grid-3">
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Our Mission</h3>
+            <p>To manufacture the highest-grade precast interlocking elements and execute reliable infrastructure projects that withstand the test of time, weather, and extreme vehicular loads.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-eye"></i></div>
+            <h3>Our Vision</h3>
+            <p>To be the most trusted infrastructure partner and manufacturer in the country, recognized for uncompromising material quality, ethical contracting, and rapid project delivery.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon"><i class="fas fa-handshake"></i></div>
+            <h3>Core Commitment</h3>
+            <p>Strict adherence to CPWD, IRC, and BIS engineering guidelines. Transparent documentation, verified lab test certificates, and end-to-end client satisfaction.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
