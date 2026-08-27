@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Government & Municipal Infrastructure Works | Shiv Traders{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-landmark"></i> Public Sector & Municipal Contracts</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Government Infrastructure & CPWD Pavements</h1>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+            Certified compliance with CPWD Specifications, MoRTH Highway Standards, and Indian Roads Congress (IRC:SP:63) guidelines for public infrastructure.
+        </p>
+    </div>
+</section>
+
+<!-- Government Standards & Compliance Grid -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-clipboard-check"></i> Standard Adherence</div>
+            <h2>Public Works Engineering Standards</h2>
+            <p>Our precast products and site execution protocols strictly satisfy all government tender mandates.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-stamp"></i></div>
+                <h3>IS 15658:2021 Concrete Pavers</h3>
+                <p>Manufactured to meet the rigorous Bureau of Indian Standards (BIS) code for solid concrete block paving across light, medium, and heavy-duty traffic categories.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-road"></i></div>
+                <h3>IRC:SP:63 & MoRTH Section 600</h3>
+                <p>Engineered for National Highways, expressway toll lanes, and urban arterial roads requiring extreme shear resistance under sudden vehicular braking.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-file-contract"></i></div>
+                <h3>CPWD Technical Specifications</h3>
+                <p>Fully compliant with CPWD Works Manual requirements for sub-base preparation, sand bedding sieve analysis, and hydraulic kerb stone edge containment.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tender Execution Capabilities -->
+<section class="section section-dark">
+    <div class="container grid-2">
+        <div>
+            <div class="section-tag"><i class="fas fa-briefcase"></i> Tender Delivery</div>
+            <h2 style="font-size: 2.3rem; margin-bottom: 1.25rem;">Why Government Departments Partner with Shiv Traders</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+                Executing government infrastructure tenders demands high daily supply capacities, uncompromised lab test reports, and financial reliability. Shiv Traders offers:
+            </p>
+            <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> <strong>{{ company.daily_capacity if company else '7,000+ Sq. Ft. / Day' }} Production:</strong> Capable of meeting tight tender deadlines without delays.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>NABL Accredited Testing Reports:</strong> Provided with every single dispatch batch.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>GST & Statutory Registrations:</strong> Fully verified GSTIN, MSME, and Trademark registrations.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Turnkey Contracting Fleet:</strong> Laser screeds, heavy rollers, and experienced paving crews.</li>
+            </ul>
+        </div>
+        <div>
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+                <img src="{{ url_for('static', filename='images/projects/toll_plaza.webp') }}" alt="Highway Toll Plaza Interlock">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tender Inquiry CTA -->
+<section class="section text-center">
+    <div class="container" style="max-width: 800px;">
+        <div class="section-tag"><i class="fas fa-gavel"></i> Government Procurement</div>
+        <h2 style="font-size: 2.3rem; margin-bottom: 1rem;">Invite Shiv Traders for Infrastructure Tenders</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+            Municipal corporations, Smart City Special Purpose Vehicles (SPVs), and PWD divisions can submit tender queries or request material sample test batches directly.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-file-signature"></i> Submit Tender Inquiry
+        </a>
+    </div>
+</section>
+{% endblock %}
