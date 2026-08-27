@@ -1,0 +1,108 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Customer Enquiries | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Customer Enquiries & Leads</h1>
+        <p>Review customer quotation requests, update follow-up statuses, and manage communications.</p>
+    </div>
+</div>
+
+<!-- Status Filter Tabs -->
+<div class="filter-bar" style="justify-content: flex-start; margin-bottom: 2rem;">
+    <a href="{{ url_for('admin_enquiries') }}" class="filter-btn {% if not current_status or current_status == 'All' %}active{% endif %}">
+        All ({{ all_count }})
+    </a>
+    <a href="{{ url_for('admin_enquiries') }}?status=New" class="filter-btn {% if current_status == 'New' %}active{% endif %}">
+        New <span style="background: var(--status-new); color: #fff; padding: 2px 6px; border-radius: 9999px; font-size: 0.75rem; margin-left: 4px;">{{ status_counts.get('New', 0) }}</span>
+    </a>
+    <a href="{{ url_for('admin_enquiries') }}?status=Contacted" class="filter-btn {% if current_status == 'Contacted' %}active{% endif %}">
+        Contacted ({{ status_counts.get('Contacted', 0) }})
+    </a>
+    <a href="{{ url_for('admin_enquiries') }}?status=In+Progress" class="filter-btn {% if current_status == 'In Progress' %}active{% endif %}">
+        In Progress ({{ status_counts.get('In Progress', 0) }})
+    </a>
+    <a href="{{ url_for('admin_enquiries') }}?status=Completed" class="filter-btn {% if current_status == 'Completed' %}active{% endif %}">
+        Completed ({{ status_counts.get('Completed', 0) }})
+    </a>
+    <a href="{{ url_for('admin_enquiries') }}?status=Cancelled" class="filter-btn {% if current_status == 'Cancelled' %}active{% endif %}">
+        Cancelled ({{ status_counts.get('Cancelled', 0) }})
+    </a>
+</div>
+
+<div class="card-panel">
+    <div class="panel-header">
+        <h3>Enquiries List ({{ enquiries|length }})</h3>
+    </div>
+
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Contact Info</th>
+                    <th>Location</th>
+                    <th>Project Type</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enq in enquiries %}
+                <tr>
+                    <td>
+                        <strong>{{ enq.name }}</strong>
+                        {% if enq.company %}
+                        <div style="font-size: 0.78rem; color: var(--text-dim);">{{ enq.company }}</div>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div><a href="tel:{{ enq.phone }}" style="color: var(--gold-light);"><i class="fas fa-phone-alt" style="font-size:0.75rem;"></i> {{ enq.phone }}</a></div>
+                        {% if enq.email %}
+                        <div style="font-size: 0.8rem; color: var(--text-sub);"><i class="fas fa-envelope" style="font-size:0.75rem;"></i> {{ enq.email }}</div>
+                        {% endif %}
+                    </td>
+                    <td>{{ enq.city }}</td>
+                    <td><span style="font-size: 0.85rem; color: var(--text-sub);">{{ enq.project_type }}</span></td>
+                    <td><strong>{{ enq.quantity or 'N/A' }}</strong></td>
+                    <td>
+                        <select class="status-select status-select-ajax" data-enquiry-id="{{ enq.enquiry_id }}" data-current-value="{{ enq.status }}">
+                            <option value="New" {% if enq.status == 'New' %}selected{% endif %}>New</option>
+                            <option value="Contacted" {% if enq.status == 'Contacted' %}selected{% endif %}>Contacted</option>
+                            <option value="In Progress" {% if enq.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                            <option value="Completed" {% if enq.status == 'Completed' %}selected{% endif %}>Completed</option>
+                            <option value="Cancelled" {% if enq.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td style="font-size: 0.82rem; color: var(--text-dim);">
+                        {{ enq.created_at[:10] if enq.created_at else '' }}
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <a href="{{ url_for('admin_enquiry_details', enquiry_id=enq.enquiry_id) }}" class="btn-icon" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <form method="POST" action="{{ url_for('admin_delete_enquiry', enquiry_id=enq.enquiry_id) }}" onsubmit="return confirm('Are you sure you want to permanently delete this enquiry?');" style="display:inline;">
+                                <button type="submit" class="btn-icon delete" title="Delete Enquiry">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" style="text-align:center; padding: 3rem; color: var(--text-dim);">
+                        No enquiries matching the selected filter.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
