@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Products Catalog | Shiv Traders - Heavy Duty Interlock Paver Blocks{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-boxes"></i> Industrial & Architectural Catalog</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Engineered Concrete Paving Systems</h1>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+            Discover our comprehensive range of high-strength interlocking pavers, hydraulic kerb stones, industrial dock blocks, and eco-grid green pavers.
+        </p>
+    </div>
+</section>
+
+<!-- Main Products Section -->
+<section class="section">
+    <div class="container">
+        <!-- Filter Tabs -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Products</button>
+            <button class="filter-btn" data-filter="Interlock Tiles">Interlock Tiles</button>
+            <button class="filter-btn" data-filter="Heavy-Duty Industrial Pavers">Heavy-Duty Industrial</button>
+            <button class="filter-btn" data-filter="Paver Blocks">Paver Blocks</button>
+            <button class="filter-btn" data-filter="Kerb Stones">Kerb Stones</button>
+            <button class="filter-btn" data-filter="Grass Pavers">Grass Pavers</button>
+            <button class="filter-btn" data-filter="Chequered Tiles">Chequered Tiles</button>
+            <button class="filter-btn" data-filter="Cover Blocks">Cover Blocks</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-4" id="products-catalog-grid">
+            {% for prod in products %}
+            <div class="product-card filter-item" data-category="{{ prod.category }}">
+                {% if prod.featured %}
+                <span class="product-badge"><i class="fas fa-star text-gold"></i> Premium</span>
+                {% endif %}
+                <div class="product-image">
+                    <img src="{{ prod.image_url }}" alt="{{ prod.name }}">
+                </div>
+                <div class="product-body">
+                    <span class="product-category">{{ prod.category }}</span>
+                    <h3 class="product-title">{{ prod.name }}</h3>
+                    <p class="product-desc">{{ prod.description }}</p>
+
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Thickness</span>
+                            <span class="spec-value">{{ prod.thickness }}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Grade</span>
+                            <span class="spec-value text-gold">{{ prod.grade }}</span>
+                        </div>
+                        {% if prod.compressive_strength %}
+                        <div class="spec-item" style="grid-column: span 2; margin-top: 0.35rem; border-top: 1px dashed var(--border-medium); padding-top: 0.35rem;">
+                            <span class="spec-label">Strength</span>
+                            <span class="spec-value">{{ prod.compressive_strength }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-footer">
+                        <a href="{{ url_for('product_details', product_id=prod.product_id) }}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                            <span>Technical Details</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 0;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">No products currently available in this category.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Custom Manufacturing Banner -->
+<section class="section section-dark">
+    <div class="container text-center" style="max-width: 800px;">
+        <div class="section-tag"><i class="fas fa-cogs"></i> Custom Specifications</div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Need Custom Thickness, Color, or M60 Grade?</h2>
+        <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem;">
+            Our automated batching plant can produce custom compressive strengths, bespoke pigment blends, and specialized moulds for large infrastructure and industrial projects.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-headset"></i> Consult Our Engineering Team
+        </a>
+    </div>
+</section>
+{% endblock %}
