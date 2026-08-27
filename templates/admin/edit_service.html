@@ -1,0 +1,53 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Edit Service: {{ service.title }} | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Edit Service</h1>
+        <p>Updating service details for <strong>{{ service.title }}</strong>.</p>
+    </div>
+    <a href="{{ url_for('admin_services') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Services
+    </a>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_edit_service', service_id=service.service_id) }}" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="title">Service Title *</label>
+                <input type="text" id="title" name="title" class="form-control-admin" required value="{{ service.title }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="category">Category *</label>
+                <input type="text" id="category" name="category" class="form-control-admin" required value="{{ service.category }}">
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="icon">FontAwesome Icon Class *</label>
+            <input type="text" id="icon" name="icon" class="form-control-admin" required value="{{ service.icon }}">
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Detailed Description *</label>
+            <textarea id="description" name="description" class="form-control-admin" required>{{ service.description }}</textarea>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="features">Key Features / Deliverables (One per line) *</label>
+            <textarea id="features" name="features" class="form-control-admin" required>{{ service.features|join('\n') if service.features else '' }}</textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+            <a href="{{ url_for('admin_services') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Update Service
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
