@@ -1,0 +1,133 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Enquiry Details: {{ enquiry.name }} | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Enquiry Details</h1>
+        <p>Inquiry ID: <code style="color: var(--gold-light);">{{ enquiry.enquiry_id }}</code></p>
+    </div>
+    <a href="{{ url_for('admin_enquiries') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Enquiries
+    </a>
+</div>
+
+<div class="grid-2" style="align-items: start; gap: 2rem;">
+    <!-- Left: Lead Details -->
+    <div class="card-panel">
+        <div class="panel-header">
+            <h3><i class="fas fa-user-circle text-gold"></i> Customer Information</h3>
+            <span class="badge {% if enquiry.status == 'New' %}badge-new{% elif enquiry.status == 'Contacted' %}badge-contacted{% elif enquiry.status == 'In Progress' %}badge-in-progress{% elif enquiry.status == 'Completed' %}badge-completed{% else %}badge-cancelled{% endif %}">
+                {{ enquiry.status }}
+            </span>
+        </div>
+        <div style="padding: 1.5rem;">
+            <table class="admin-table" style="margin-bottom: 1.5rem;">
+                <tbody>
+                    <tr>
+                        <td style="color: var(--text-dim); width: 35%;">Customer Name</td>
+                        <td><strong style="color: #fff; font-size: 1.1rem;">{{ enquiry.name }}</strong></td>
+                    </tr>
+                    {% if enquiry.company %}
+                    <tr>
+                        <td style="color: var(--text-dim);">Company / Firm</td>
+                        <td><strong style="color: var(--gold-light);">{{ enquiry.company }}</strong></td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td style="color: var(--text-dim);">Phone Number</td>
+                        <td>
+                            <a href="tel:{{ enquiry.phone }}" style="color: var(--gold-light); font-weight: 700;">
+                                <i class="fas fa-phone-alt"></i> {{ enquiry.phone }}
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-dim);">Email Address</td>
+                        <td>
+                            {% if enquiry.email %}
+                            <a href="mailto:{{ enquiry.email }}" style="color: #60a5fa;">
+                                <i class="fas fa-envelope"></i> {{ enquiry.email }}
+                            </a>
+                            {% else %}
+                            <span style="color: var(--text-dim);">Not provided</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-dim);">Site Location / City</td>
+                        <td><strong style="color: #fff;">{{ enquiry.city }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-dim);">Project Type</td>
+                        <td>{{ enquiry.project_type }}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-dim);">Estimated Quantity</td>
+                        <td><strong style="color: var(--gold-light);">{{ enquiry.quantity or 'Not specified' }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--text-dim);">Submitted At</td>
+                        <td>{{ enquiry.created_at }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Quick Action Triggers -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="tel:{{ enquiry.phone }}" class="btn btn-secondary btn-sm" style="flex: 1;">
+                    <i class="fas fa-phone"></i> Call Customer
+                </a>
+                <a href="https://wa.me/{{ enquiry.phone|replace('+', '')|replace(' ', '') }}?text=Hello%20{{ enquiry.name|urlencode }},%20this%20is%20Shiv%20Traders%20following%20up%20on%20your%20paver%20block%20inquiry." target="_blank" class="btn btn-secondary btn-sm" style="flex: 1; color: #25D366; border-color: #25D366;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                {% if enquiry.email %}
+                <a href="mailto:{{ enquiry.email }}?subject=Shiv%20Traders%20Quotation%20for%20{{ enquiry.project_type|urlencode }}" class="btn btn-secondary btn-sm" style="flex: 1;">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: Message & Status Change -->
+    <div>
+        <!-- Message Box -->
+        <div class="card-panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+                <h3><i class="fas fa-comment-alt text-gold"></i> Project Message / Scope</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+                <p style="color: #fff; background: var(--input-bg); border: 1px solid var(--border-color); padding: 1.25rem; border-radius: 8px; font-size: 1rem; line-height: 1.7; white-space: pre-wrap;">
+                    {{ enquiry.message if enquiry.message else 'No message text provided.' }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Status Updater -->
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3><i class="fas fa-tasks text-gold"></i> Update Lead Status</h3>
+            </div>
+            <div style="padding: 1.5rem;">
+                <form method="POST" action="{{ url_for('admin_update_enquiry_status_form', enquiry_id=enquiry.enquiry_id) }}">
+                    <div class="form-group-admin">
+                        <label for="status">Change Current Status</label>
+                        <select id="status" name="status" class="form-control-admin" required>
+                            <option value="New" {% if enquiry.status == 'New' %}selected{% endif %}>New</option>
+                            <option value="Contacted" {% if enquiry.status == 'Contacted' %}selected{% endif %}>Contacted</option>
+                            <option value="In Progress" {% if enquiry.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                            <option value="Completed" {% if enquiry.status == 'Completed' %}selected{% endif %}>Completed</option>
+                            <option value="Cancelled" {% if enquiry.status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;">
+                        <i class="fas fa-check"></i> Save Status Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
