@@ -1,0 +1,111 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Company Profile & Settings | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Company Information & Settings</h1>
+        <p>Changes saved here automatically update the public website headers, footers, and WhatsApp buttons.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_company') }}" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="company_name">Company Name *</label>
+                <input type="text" id="company_name" name="company_name" class="form-control-admin" required value="{{ company.company_name }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="tagline">Brand Tagline *</label>
+                <input type="text" id="tagline" name="tagline" class="form-control-admin" required value="{{ company.tagline }}">
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Company Overview / Bio *</label>
+            <textarea id="description" name="description" class="form-control-admin" required>{{ company.description }}</textarea>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="phone"><i class="fas fa-phone-alt text-gold"></i> Primary Phone Number *</label>
+                <input type="text" id="phone" name="phone" class="form-control-admin" required value="{{ company.phone }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="whatsapp_number"><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Floating Number *</label>
+                <input type="text" id="whatsapp_number" name="whatsapp_number" class="form-control-admin" required value="{{ company.whatsapp_number }}" placeholder="e.g. +919829012345 (no spaces for chat API)">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="email"><i class="fas fa-envelope text-gold"></i> Official Email *</label>
+                <input type="email" id="email" name="email" class="form-control-admin" required value="{{ company.email }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="business_hours"><i class="fas fa-clock text-gold"></i> Business & Plant Hours *</label>
+                <input type="text" id="business_hours" name="business_hours" class="form-control-admin" required value="{{ company.business_hours }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="address">Factory / Office Address *</label>
+                <input type="text" id="address" name="address" class="form-control-admin" required value="{{ company.address }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" class="form-control-admin" required value="{{ company.city }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="state" class="form-control-admin" required value="{{ company.state }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" name="pincode" class="form-control-admin" value="{{ company.pincode or '302013' }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="gst_number"><i class="fas fa-shield-alt text-gold"></i> GSTIN Number *</label>
+                <input type="text" id="gst_number" name="gst_number" class="form-control-admin" required value="{{ company.gst_number }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="trademark_information"><i class="fas fa-trademark text-gold"></i> Trademark / Class 19 Details</label>
+                <input type="text" id="trademark_information" name="trademark_information" class="form-control-admin" value="{{ company.trademark_information }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="daily_capacity">Daily Production Output</label>
+                <input type="text" id="daily_capacity" name="daily_capacity" class="form-control-admin" value="{{ company.daily_capacity or '50,000+ Sq. Ft. / Day' }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="total_area_paved">Total Area Paved</label>
+                <input type="text" id="total_area_paved" name="total_area_paved" class="form-control-admin" value="{{ company.total_area_paved or '4.5 Million+ Sq. Ft.' }}">
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Save Changes to Firestore
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
