@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shiv Traders | Luxury Manufacturing & Infrastructure Solutions{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Shiv Traders - Premier Manufacturer of Heavy-Duty Interlocking Paver Blocks, Industrial Flooring, and Turnkey Infrastructure Contracting.{% endblock %}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Luxury CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- TOP INFORMATION BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-info">
+                <span><i class="fas fa-phone-alt text-gold"></i> <a href="tel:{{ company.phone if company else '+919829012345' }}">{{ company.phone if company else '+91 98290 12345' }}</a></span>
+                <span><i class="fas fa-envelope text-gold"></i> <a href="mailto:{{ company.email if company else 'contact@shivtraders.com' }}">{{ company.email if company else 'contact@shivtraders.com' }}</a></span>
+                <span><i class="fas fa-clock text-gold"></i> {{ company.business_hours if company else 'Mon - Sat: 8:00 AM - 7:30 PM' }}</span>
+            </div>
+            <div class="top-bar-info">
+                <span class="top-bar-badge"><i class="fas fa-award text-gold"></i> {{ company.quality_certification if company else 'ISO 9001:2015 & BIS IS-15658 Certified' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN LUXURY NAVIGATION -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{{ url_for('index') }}" class="brand-logo">
+                    <div class="brand-mark">ST</div>
+                    <div class="brand-text">
+                        <span class="brand-title">SHIV TRADERS</span>
+                        <span class="brand-subtitle">MANUFACTURING & INFRASTRUCTURE</span>
+                    </div>
+                </a>
+
+                <div class="nav-links">
+                    <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}">About Us</a>
+                    <a href="{{ url_for('products') }}" class="nav-link {% if active_page == 'products' %}active{% endif %}">Products</a>
+                    <a href="{{ url_for('manufacturing') }}" class="nav-link {% if active_page == 'manufacturing' %}active{% endif %}">Manufacturing</a>
+                    <a href="{{ url_for('services') }}" class="nav-link {% if active_page == 'services' %}active{% endif %}">Services</a>
+                    <a href="{{ url_for('projects') }}" class="nav-link {% if active_page == 'projects' %}active{% endif %}">Projects</a>
+                    <a href="{{ url_for('government') }}" class="nav-link {% if active_page == 'government' %}active{% endif %}">Government</a>
+                    <a href="{{ url_for('credentials') }}" class="nav-link {% if active_page == 'credentials' %}active{% endif %}">Credentials</a>
+                    <a href="{{ url_for('contact') }}" class="nav-link {% if active_page == 'contact' %}active{% endif %}">Contact</a>
+                </div>
+
+                <div class="nav-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-file-signature"></i> Request Quote
+                    </a>
+                    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FLASH MESSAGES / NOTIFICATIONS -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="toast-container">
+                {% for category, message in messages %}
+                    <div class="toast {{ category }}">
+                        <i class="fas {% if category == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- MAIN CONTENT INJECTION -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="#" class="floating-whatsapp" data-phone="{{ company.whatsapp_number if company else '919829012345' }}" aria-label="Contact via WhatsApp">
+        <div class="whatsapp-pulse"></div>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- MAIN LUXURY FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Info -->
+                <div class="footer-brand">
+                    <div class="brand-logo" style="margin-bottom: 1rem;">
+                        <div class="brand-mark">ST</div>
+                        <div class="brand-text">
+                            <span class="brand-title">SHIV TRADERS</span>
+                            <span class="brand-subtitle">PRECISION INFRASTRUCTURE</span>
+                        </div>
+                    </div>
+                    <p>{{ company.tagline if company else 'Building Strong Foundations. Creating Better Spaces.' }}</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">
+                        {{ company.description if company else 'Premier manufacturer of heavy-duty interlocking pavers and specialized infrastructure contractor.' }}
+                    </p>
+                    <div style="margin-top: 1rem; color: var(--gold-light); font-size: 0.82rem;">
+                        <i class="fas fa-shield-alt"></i> GSTIN: {{ company.gst_number if company else '08AABCS1429K1Z5' }}
+                    </div>
+                </div>
+
+                <!-- Navigation Quick Links -->
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('about') }}"><i class="fas fa-chevron-right text-gold"></i> Company Heritage</a></li>
+                        <li><a href="{{ url_for('products') }}"><i class="fas fa-chevron-right text-gold"></i> Pavers & Tiles Catalog</a></li>
+                        <li><a href="{{ url_for('manufacturing') }}"><i class="fas fa-chevron-right text-gold"></i> Plant & Technology</a></li>
+                        <li><a href="{{ url_for('services') }}"><i class="fas fa-chevron-right text-gold"></i> Paving Contracting</a></li>
+                        <li><a href="{{ url_for('projects') }}"><i class="fas fa-chevron-right text-gold"></i> Executed Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Compliance & Solutions -->
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('government') }}"><i class="fas fa-chevron-right text-gold"></i> Municipal & CPWD Works</a></li>
+                        <li><a href="{{ url_for('projects') }}?cat=Factory+Construction"><i class="fas fa-chevron-right text-gold"></i> Industrial Container Yards</a></li>
+                        <li><a href="{{ url_for('projects') }}?cat=Street+Development"><i class="fas fa-chevron-right text-gold"></i> Urban Corridors</a></li>
+                        <li><a href="{{ url_for('credentials') }}"><i class="fas fa-chevron-right text-gold"></i> Verified Certifications</a></li>
+                        <li><a href="{{ url_for('contact') }}"><i class="fas fa-chevron-right text-gold"></i> Material Estimator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Plant & Contact Details -->
+                <div class="footer-col">
+                    <h4>Headquarters & Plant</h4>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ company.address if company else 'Plot No. 45-48, RIICO Industrial Area, Phase II' }}, {{ company.city if company else 'Jaipur' }}, {{ company.state if company else 'Rajasthan' }}</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>{{ company.phone if company else '+91 98290 12345' }}</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{ company.email if company else 'contact@shivtraders.com' }}</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>{{ company.trademark_information if company else 'Registered Trademark (Class 19)' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    &copy; 2026 <strong>Shiv Traders</strong>. All Rights Reserved. Building Strong Foundations.
+                </div>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="{{ url_for('credentials') }}">Quality Policy</a>
+                    <a href="{{ url_for('government') }}">CPWD Standards</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase JavaScript SDK (v10) & Analytics -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "{{ config.FIREBASE_API_KEY if config else 'AIzaSyB0PPldQrPlfUhdl--4cOF7FHHSrGhgGAk' }}",
+            authDomain: "{{ config.FIREBASE_AUTH_DOMAIN if config else 'shiv-trader.firebaseapp.com' }}",
+            projectId: "{{ config.FIREBASE_PROJECT_ID if config else 'shiv-trader' }}",
+            storageBucket: "{{ config.FIREBASE_STORAGE_BUCKET if config else 'shiv-trader.firebasestorage.app' }}",
+            messagingSenderId: "{{ config.FIREBASE_MESSAGING_SENDER_ID if config else '12220782640' }}",
+            appId: "{{ config.FIREBASE_APP_ID if config else '1:12220782640:web:1cdd605df261eea9a1f5f5' }}",
+            measurementId: "{{ config.FIREBASE_MEASUREMENT_ID if config else 'G-W227SZ8HZH' }}"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        try {
+            const analytics = getAnalytics(app);
+            console.log("Firebase Analytics initialized successfully for Shiv Traders.");
+        } catch (e) {
+            console.warn("Analytics initialization note:", e);
+        }
+    </script>
+
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
