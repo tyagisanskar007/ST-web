@@ -1,0 +1,100 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Add Project | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Add New Project</h1>
+        <p>Document a completed or ongoing civil infrastructure pavement project.</p>
+    </div>
+    <a href="{{ url_for('admin_projects') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_add_project') }}" enctype="multipart/form-data" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="project_name">Project Name *</label>
+                <input type="text" id="project_name" name="project_name" class="form-control-admin" required placeholder="e.g. Smart City Urban Corridor Pavement">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="category">Category *</label>
+                <select id="category" name="category" class="form-control-admin" required>
+                    <option value="Street Development">Street Development</option>
+                    <option value="Parking Area">Parking Area</option>
+                    <option value="Market Development">Market Development</option>
+                    <option value="Factory Construction">Factory Construction</option>
+                    <option value="Interlock Tile Installation">Interlock Tile Installation</option>
+                    <option value="Government Infrastructure">Government Infrastructure</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="location">Location / City *</label>
+                <input type="text" id="location" name="location" class="form-control-admin" required placeholder="e.g. Jaipur Urban Boulevard, Rajasthan">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="area_sqft">Paved Area (Sq. Ft.) *</label>
+                <input type="text" id="area_sqft" name="area_sqft" class="form-control-admin" required placeholder="e.g. 145,000 Sq. Ft.">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="completion_date">Completion Date *</label>
+                <input type="date" id="completion_date" name="completion_date" class="form-control-admin" required value="2026-01-15">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="status">Project Status *</label>
+                <select id="status" name="status" class="form-control-admin" required>
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Scope of Work & Engineering Summary *</label>
+            <textarea id="description" name="description" class="form-control-admin" required placeholder="Describe the technical execution, paver type used (80mm/100mm M50), sub-base preparation, and traffic load parameters..."></textarea>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="image">Primary Site Photo *</label>
+                <input type="file" id="image" name="image" class="form-control-admin preview-target" data-preview-id="project-preview" accept="image/*">
+                <div class="image-preview-box" id="project-preview">
+                    <span style="color: var(--text-dim); font-size: 0.8rem;">No image selected</span>
+                </div>
+            </div>
+
+            <div class="form-group-admin">
+                <label for="images">Additional Project Site Photos</label>
+                <input type="file" id="images" name="images" class="form-control-admin" multiple accept="image/*">
+                <p style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.35rem;">Select multiple photos to showcase before/after and close-up laying details.</p>
+            </div>
+        </div>
+
+        <div style="margin: 1.5rem 0; padding: 1rem; background: var(--input-bg); border-radius: 8px;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                <input type="checkbox" name="featured" value="1" style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+                <span>Feature as Flagship Project on Homepage</span>
+            </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+            <a href="{{ url_for('admin_projects') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Save Project to Firestore
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
