@@ -1,0 +1,53 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Add Service | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Add New Service</h1>
+        <p>Introduce a new civil contracting capability or manufacturing service.</p>
+    </div>
+    <a href="{{ url_for('admin_services') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Services
+    </a>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_add_service') }}" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="title">Service Title *</label>
+                <input type="text" id="title" name="title" class="form-control-admin" required placeholder="e.g. Turnkey Interlock Paving Contracting">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="category">Category *</label>
+                <input type="text" id="category" name="category" class="form-control-admin" required placeholder="e.g. Infrastructure Contracting">
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="icon">FontAwesome Icon Class *</label>
+            <input type="text" id="icon" name="icon" class="form-control-admin" required value="fa-layer-group" placeholder="e.g. fa-layer-group, fa-industry, fa-landmark">
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Detailed Description *</label>
+            <textarea id="description" name="description" class="form-control-admin" required placeholder="Comprehensive description of equipment, laser leveling, compaction methods, and warranty..."></textarea>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="features">Key Features / Deliverables (One per line) *</label>
+            <textarea id="features" name="features" class="form-control-admin" required placeholder="Sub-base compaction & leveling&#10;Laser-guided automated laying&#10;CPWD & IS-15658 standards compliance&#10;Comprehensive warranty support"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+            <a href="{{ url_for('admin_services') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Save Service
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
