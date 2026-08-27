@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Infrastructure Services | Shiv Traders - Turnkey Paving Contracting{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-tools"></i> Turnkey Infrastructure Contracting</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Complete Pavement & Civil Solutions</h1>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+            From initial ground surveys and laser sub-base leveling to high-capacity mechanical paver placement and municipal edge containment.
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="section">
+    <div class="container">
+        <div class="grid-2" style="gap: 3rem; margin-bottom: 4rem;">
+            <div class="service-card" style="padding: 3rem;">
+                <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="section-tag"><i class="fas fa-check"></i> Turnkey Execution</div>
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Turnkey Interlocking Paving Contracting</h2>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+                    We undertake end-to-end paving projects for industrial zones, commercial plazas, and large residential townships. Our in-house machinery and certified civil supervisors ensure strict compaction control and level accuracy.
+                </p>
+                <ul class="service-features" style="margin-bottom: 2rem;">
+                    <li><i class="fas fa-check-circle"></i> Complete sub-grade excavation & rolling compaction</li>
+                    <li><i class="fas fa-check-circle"></i> Granular Sub-Base (GSB) & Wet Mix Macadam (WMM) laying</li>
+                    <li><i class="fas fa-check-circle"></i> Laser-guided screed sand bedding layer (30-50mm)</li>
+                    <li><i class="fas fa-check-circle"></i> Mechanized paver laying & joint sand vibration</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline-gold"><i class="fas fa-arrow-right"></i> Inquire for Turnkey Project</a>
+            </div>
+
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+                <img src="{{ url_for('static', filename='images/manufacturing/service_industrial.webp') }}" alt="Turnkey Paving" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="grid-2" style="gap: 3rem;">
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg); order: 2;">
+                <img src="{{ url_for('static', filename='images/manufacturing/service_government.webp') }}" alt="Government Works" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <div class="service-card" style="padding: 3rem; order: 1;">
+                <div class="service-icon"><i class="fas fa-landmark"></i></div>
+                <div class="section-tag"><i class="fas fa-shield-alt"></i> Municipal & Government</div>
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Government & Smart City Urban Corridors</h2>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+                    We specialize in tender execution for municipal corporations, urban development authorities (UDA), Smart Cities Mission, and CPWD/PWD roadway projects.
+                </p>
+                <ul class="service-features" style="margin-bottom: 2rem;">
+                    <li><i class="fas fa-check-circle"></i> CPWD IS-15658 certified compressive strength</li>
+                    <li><i class="fas fa-check-circle"></i> Tactile guiding and warning paving for pedestrian corridors</li>
+                    <li><i class="fas fa-check-circle"></i> High-tensile road divider kerb stones and storm water channels</li>
+                    <li><i class="fas fa-check-circle"></i> Formal third-party NABL lab test conformity reporting</li>
+                </ul>
+                <a href="{{ url_for('government') }}" class="btn btn-outline-gold"><i class="fas fa-arrow-right"></i> View Government Capabilities</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-base Engineering Highlight -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-layer-group"></i> Sub-base Engineering</div>
+            <h2>Why Foundations Matter</h2>
+            <p>An interlocking paver block pavement is only as strong as the sub-base beneath it.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="form-card">
+                <h4 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fas fa-mountain"></i> 1. Compacted Sub-grade</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Heavy vibratory rolling to achieve 98% Modified Proctor Density (MDD), preventing long-term pavement rutting.</p>
+            </div>
+            <div class="form-card">
+                <h4 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fas fa-cubes"></i> 2. Base Course (WMM / GSB)</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Granular stone aggregates graded to provide water drainage and uniform load distribution under wheel axles.</p>
+            </div>
+            <div class="form-card">
+                <h4 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.75rem;"><i class="fas fa-lock"></i> 3. Interlocked Surface & Edge Kerb</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Rigid kerb confinement prevents lateral block shifting, locking the entire surface into a monolithic load-bearing carpet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
