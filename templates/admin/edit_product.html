@@ -1,0 +1,123 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Edit Product: {{ product.name }} | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Edit Product</h1>
+        <p>Updating specifications for <strong>{{ product.name }}</strong>.</p>
+    </div>
+    <a href="{{ url_for('admin_products') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Products
+    </a>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_edit_product', product_id=product.product_id) }}" enctype="multipart/form-data" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="name">Product Name *</label>
+                <input type="text" id="name" name="name" class="form-control-admin" required value="{{ product.name }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="category">Category *</label>
+                <select id="category" name="category" class="form-control-admin" required>
+                    <option value="Interlock Tiles" {% if product.category == 'Interlock Tiles' %}selected{% endif %}>Interlock Tiles</option>
+                    <option value="Heavy-Duty Industrial Pavers" {% if product.category == 'Heavy-Duty Industrial Pavers' %}selected{% endif %}>Heavy-Duty Industrial Pavers</option>
+                    <option value="Paver Blocks" {% if product.category == 'Paver Blocks' %}selected{% endif %}>Paver Blocks</option>
+                    <option value="Kerb Stones" {% if product.category == 'Kerb Stones' %}selected{% endif %}>Kerb Stones</option>
+                    <option value="Grass Pavers" {% if product.category == 'Grass Pavers' %}selected{% endif %}>Grass Pavers</option>
+                    <option value="Chequered Tiles" {% if product.category == 'Chequered Tiles' %}selected{% endif %}>Chequered Tiles</option>
+                    <option value="Cover Blocks" {% if product.category == 'Cover Blocks' %}selected{% endif %}>Cover Blocks</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="thickness">Thickness (mm) *</label>
+                <input type="text" id="thickness" name="thickness" class="form-control-admin" required value="{{ product.thickness }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="grade">Concrete Grade *</label>
+                <input type="text" id="grade" name="grade" class="form-control-admin" required value="{{ product.grade }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="compressive_strength">Compressive Strength (N/mm²)</label>
+                <input type="text" id="compressive_strength" name="compressive_strength" class="form-control-admin" value="{{ product.compressive_strength or '' }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="dimensions">Dimensions (L x W x H)</label>
+                <input type="text" id="dimensions" name="dimensions" class="form-control-admin" value="{{ product.dimensions or '' }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="finish">Surface Finish</label>
+                <input type="text" id="finish" name="finish" class="form-control-admin" value="{{ product.finish or '' }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="colors">Available Colors (Comma Separated)</label>
+                <input type="text" id="colors" name="colors" class="form-control-admin" value="{{ product.colors|join(', ') if product.colors else '' }}">
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Product Description *</label>
+            <textarea id="description" name="description" class="form-control-admin" required>{{ product.description }}</textarea>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="applications">Recommended Applications (Comma Separated)</label>
+            <input type="text" id="applications" name="applications" class="form-control-admin" value="{{ product.applications|join(', ') if product.applications else '' }}">
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="image">Replace Primary Image</label>
+                <input type="file" id="image" name="image" class="form-control-admin preview-target" data-preview-id="product-preview" accept="image/*">
+                <div class="image-preview-box" id="product-preview">
+                    {% if product.image_url %}
+                    <img src="{{ product.image_url }}" alt="Current Image">
+                    {% else %}
+                    <span style="color: var(--text-dim); font-size: 0.8rem;">No image</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group-admin">
+                <label for="gallery">Add More Gallery Images</label>
+                <input type="file" id="gallery" name="gallery" class="form-control-admin" multiple accept="image/*">
+                <p style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.35rem;">Upload additional photo angles for the product gallery.</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 2rem; margin: 1.5rem 0; padding: 1rem; background: var(--input-bg); border-radius: 8px;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                <input type="checkbox" name="available" value="1" {% if product.available %}checked{% endif %} style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+                <span>Available for Immediate Dispatch</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                <input type="checkbox" name="featured" value="1" {% if product.featured %}checked{% endif %} style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+                <span>Feature on Homepage</span>
+            </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+            <a href="{{ url_for('admin_products') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Update Product in Firestore
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
