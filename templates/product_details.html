@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} | Shiv Traders{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Bar -->
+<div style="background: #090a0d; padding: 1.25rem 0; border-bottom: 1px solid var(--border-subtle); font-size: 0.88rem;">
+    <div class="container">
+        <a href="{{ url_for('index') }}" style="color: var(--text-muted);">Home</a>
+        <span style="color: var(--text-muted); margin: 0 0.5rem;">/</span>
+        <a href="{{ url_for('products') }}" style="color: var(--text-muted);">Products</a>
+        <span style="color: var(--text-muted); margin: 0 0.5rem;">/</span>
+        <span style="color: var(--gold-light);">{{ product.name }}</span>
+    </div>
+</div>
+
+<!-- Product Details Main -->
+<section class="section">
+    <div class="container grid-2" style="align-items: start; gap: 3.5rem;">
+        <!-- Left: Image & Gallery -->
+        <div>
+            <div style="background: var(--bg-surface-card); border: 1px solid var(--border-medium); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); margin-bottom: 1.5rem;">
+                <img id="main-product-img" src="{{ product.image_url }}" alt="{{ product.name }}" style="width: 100%; height: 440px; object-fit: cover;">
+            </div>
+
+            {% if product.gallery and product.gallery|length > 1 %}
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                {% for img in product.gallery %}
+                <div onclick="document.getElementById('main-product-img').src='{{ img }}'" style="width: 90px; height: 75px; border-radius: var(--radius-sm); overflow: hidden; border: 2px solid var(--border-medium); cursor: pointer; transition: var(--transition);">
+                    <img src="{{ img }}" alt="Gallery thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Technical Compliance Badge -->
+            <div class="form-card" style="margin-top: 2rem; padding: 1.5rem; border-left: 4px solid var(--gold-primary);">
+                <h4 style="color: #fff; margin-bottom: 0.5rem;"><i class="fas fa-check-double text-gold"></i> Standard Compliance</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                    Manufactured strictly in accordance with <strong>BIS IS-15658:2021</strong> and <strong>IRC:SP:63</strong> guidelines for heavy-duty precast concrete block pavements.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right: Specs & Action -->
+        <div>
+            <div class="section-tag"><i class="fas fa-cube"></i> {{ product.category }}</div>
+            <h1 style="font-size: 2.4rem; margin-bottom: 1rem; color: #fff;">{{ product.name }}</h1>
+            <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+                {{ product.description }}
+            </p>
+
+            <!-- Technical Specifications Table -->
+            <div class="card-panel" style="margin-bottom: 2rem; border-color: var(--border-medium);">
+                <div class="panel-header" style="background: var(--bg-surface-elevated);">
+                    <h3>Technical Data Sheet</h3>
+                </div>
+                <table class="admin-table">
+                    <tbody>
+                        <tr>
+                            <td style="color: var(--text-muted); width: 40%; font-weight: 600;">Thickness</td>
+                            <td style="color: #fff; font-weight: 700;">{{ product.thickness }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Concrete Grade</td>
+                            <td style="color: var(--gold-light); font-weight: 700;">{{ product.grade }}</td>
+                        </tr>
+                        {% if product.compressive_strength %}
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Compressive Strength</td>
+                            <td style="color: #fff;">{{ product.compressive_strength }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if product.dimensions %}
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Dimensions (L x W x H)</td>
+                            <td style="color: #fff;">{{ product.dimensions }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if product.finish %}
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Surface Finish</td>
+                            <td style="color: #fff;">{{ product.finish }}</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Water Absorption</td>
+                            <td style="color: #fff;">&lt; 5% (By Weight)</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--text-muted); font-weight: 600;">Availability</td>
+                            <td>
+                                <span class="badge {% if product.available %}badge-completed{% else %}badge-cancelled{% endif %}">
+                                    {{ 'In Stock / Ready Dispatch' if product.available else 'Made to Order' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Applications -->
+            {% if product.applications %}
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.75rem;">Recommended Applications:</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    {% for app in product.applications %}
+                    <span style="background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); color: var(--text-secondary); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.85rem;">
+                        <i class="fas fa-check text-gold" style="font-size: 0.75rem;"></i> {{ app }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Direct Enquiry CTA -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="{{ url_for('contact') }}?product={{ product.name|urlencode }}" class="btn btn-primary btn-lg" style="flex: 1;">
+                    <i class="fas fa-file-invoice"></i> Request Quote for this Product
+                </a>
+                <a href="https://wa.me/{{ company.whatsapp_number if company else '919829012345' }}?text=Hello%20Shiv%20Traders,%20I%20am%20inquiring%20about%20{{ product.name|urlencode }}." target="_blank" class="btn btn-secondary btn-lg" style="color: #25D366; border-color: #25D366;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+{% if related_products %}
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-layer-group"></i> Similar Solutions</div>
+            <h2>Related Paving Products</h2>
+        </div>
+        <div class="grid-4">
+            {% for r_prod in related_products[:4] %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ r_prod.image_url }}" alt="{{ r_prod.name }}">
+                </div>
+                <div class="product-body">
+                    <span class="product-category">{{ r_prod.category }}</span>
+                    <h3 class="product-title">{{ r_prod.name }}</h3>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-label">Thickness</span><span class="spec-value">{{ r_prod.thickness }}</span></div>
+                        <div class="spec-item"><span class="spec-label">Grade</span><span class="spec-value text-gold">{{ r_prod.grade }}</span></div>
+                    </div>
+                    <a href="{{ url_for('product_details', product_id=r_prod.product_id) }}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                        <span>View Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
