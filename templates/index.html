@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}Shiv Traders | Luxury Manufacturing & Infrastructure Solutions{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================================
+     CINEMATIC HERO SECTION
+     ========================================================================= -->
+<section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="section-tag">
+                <i class="fas fa-industry"></i> Precision Manufacturing & Infrastructure Contracting
+            </div>
+            <h1>
+                Building <span class="gold-gradient-text">Strong Foundations.</span><br>
+                Creating Better Spaces.
+            </h1>
+            <p class="hero-lead">
+                Shiv Traders integrates precision hydraulic precast manufacturing with turnkey civil infrastructure contracting to deliver heavy-duty interlock pavers, industrial yards, and municipal corridors.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-layer-group"></i> Explore Products
+                </a>
+                <a href="{{ url_for('projects') }}" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-city"></i> View Projects
+                </a>
+            </div>
+
+            <!-- Dynamic Statistics Bar -->
+            <div class="hero-stats-banner">
+                <div class="hero-stat-card">
+                    <h3>{{ company.total_area_paved if company else '3 Million+' }}</h3>
+                    <p>Sq. Ft. Paved</p>
+                </div>
+                <div class="hero-stat-card">
+                    <h3>{{ company.daily_capacity if company else '7,000+' }}</h3>
+                    <p>Daily Capacity (Sq. Ft.)</p>
+                </div>
+                <div class="hero-stat-card">
+                    <h3>{{ company.experience_years if company else '8+' }}</h3>
+                    <p>Years of Engineering</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="hero-visual">
+            <div class="hero-image-wrapper">
+                <img src="{{ url_for('static', filename='images/products/zigzag_installed.webp') }}" alt="Heavy Duty Interlocking Pavers">
+            </div>
+            <div class="hero-badge-bar">
+                <div class="badge-bar-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="badge-bar-text">
+                    <h4>M40 to M60 Concrete Grade</h4>
+                    <p><i class="fas fa-check-circle"></i> Certified BIS IS-15658 Compliant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     MANUFACTURING PROWESS & BRAND OVERVIEW
+     ========================================================================= -->
+<section class="section section-dark">
+    <div class="container grid-2">
+        <div>
+            <div class="section-tag">
+                <i class="fas fa-industry"></i> Engineering Excellence
+            </div>
+            <h2 style="font-size: 2.3rem; margin-bottom: 1.25rem;">
+                Precision Hydraulic Pressing & High-Tonnage Compaction
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+                At Shiv Traders, we manufacture precast concrete paver blocks utilizing automated high-pressure vibro-hydraulic technology. Every block is crafted with 53-grade OPC cement, micro-graded quartz aggregates, and imported German synthetic iron oxide pigments.
+            </p>
+            <div class="process-step">
+                <div class="process-num">01</div>
+                <div class="process-info">
+                    <h4>Zero-Porosity Compression</h4>
+                    <p>120+ ton hydraulic pressure eliminates internal micro-voids, guaranteeing supreme frost and wear resistance.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-num">02</div>
+                <div class="process-info">
+                    <h4>Extreme Compressive Strength</h4>
+                    <p>Engineered for high-point axle loads, handling reach stackers, container trailers, and high-frequency urban traffic.</p>
+                </div>
+            </div>
+            <a href="{{ url_for('manufacturing') }}" class="btn btn-outline-gold">
+                <i class="fas fa-arrow-right"></i> Tour Manufacturing Plant
+            </a>
+        </div>
+
+        <div style="position: relative;">
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+                <img src="{{ url_for('static', filename='images/manufacturing/plant_press.webp') }}" alt="Shiv Traders Manufacturing Plant">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     FEATURED PRODUCTS SHOWCASE
+     ========================================================================= -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">
+                <i class="fas fa-boxes"></i> Industrial Catalog
+            </div>
+            <h2>Premium Interlock & Infrastructure Pavers</h2>
+            <p>Engineered for extreme durability, architectural aesthetics, and seamless interlocking stability.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Solutions</button>
+            <button class="filter-btn" data-filter="Interlock Tiles">Interlock Tiles</button>
+            <button class="filter-btn" data-filter="Heavy-Duty Industrial Pavers">Heavy-Duty Industrial</button>
+            <button class="filter-btn" data-filter="Paver Blocks">Architectural Pavers</button>
+            <button class="filter-btn" data-filter="Kerb Stones">Kerb Stones</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid-4" id="products-grid">
+            {% for prod in products[:8] %}
+            <div class="product-card filter-item" data-category="{{ prod.category }}">
+                {% if prod.featured %}
+                <span class="product-badge"><i class="fas fa-star text-gold"></i> Featured</span>
+                {% endif %}
+                <div class="product-image">
+                    <img src="{{ prod.image_url }}" alt="{{ prod.name }}">
+                </div>
+                <div class="product-body">
+                    <span class="product-category">{{ prod.category }}</span>
+                    <h3 class="product-title">{{ prod.name }}</h3>
+                    <p class="product-desc">{{ prod.description }}</p>
+
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Thickness</span>
+                            <span class="spec-value">{{ prod.thickness }}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Grade</span>
+                            <span class="spec-value text-gold">{{ prod.grade }}</span>
+                        </div>
+                    </div>
+
+                    <div class="product-footer">
+                        <a href="{{ url_for('product_details', product_id=prod.product_id) }}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                            <span>View Technical Specs</span> <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;">
+            <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-th"></i> View Full Product Catalog
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     CORE SERVICES & INFRASTRUCTURE CONTRACTING
+     ========================================================================= -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">
+                <i class="fas fa-tools"></i> Turnkey Execution
+            </div>
+            <h2>Infrastructure Contracting Capabilities</h2>
+            <p>From site survey and laser sub-base grading to high-speed mechanized block placement and edge stabilization.</p>
+        </div>
+
+        <div class="grid-4">
+            {% for serv in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas {{ serv.icon }}"></i>
+                </div>
+                <h3>{{ serv.title }}</h3>
+                <p>{{ serv.description }}</p>
+                <ul class="service-features">
+                    {% for feat in serv.features %}
+                    <li><i class="fas fa-check-circle"></i> {{ feat }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     FEATURED INFRASTRUCTURE PROJECTS
+     ========================================================================= -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">
+                <i class="fas fa-city"></i> Proven Track Record
+            </div>
+            <h2>Flagship Infrastructure Projects</h2>
+            <p>Real-world heavy-duty pavements delivered for municipal corridors, logistics parks, and commercial developments.</p>
+        </div>
+
+        <div class="grid-3">
+            {% for proj in projects[:6] %}
+            <div class="project-card">
+                <div class="project-media">
+                    <img src="{{ proj.image_url }}" alt="{{ proj.project_name }}">
+                    <span class="project-status-tag {{ 'completed' if proj.status == 'Completed' else 'in-progress' }}">
+                        {{ proj.status }}
+                    </span>
+                </div>
+                <div class="project-body">
+                    <div class="project-category">{{ proj.category }}</div>
+                    <h3 class="project-title">{{ proj.project_name }}</h3>
+                    <div class="project-meta">
+                        <span><i class="fas fa-map-marker-alt text-gold"></i> {{ proj.location }}</span>
+                        <span><i class="fas fa-ruler-combined text-gold"></i> {{ proj.area_sqft }}</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                        {{ proj.description }}
+                    </p>
+                    <a href="{{ url_for('project_details', project_id=proj.project_id) }}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                        <span>Case Study Details</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{{ url_for('projects') }}" class="btn btn-outline-gold btn-lg">
+                <i class="fas fa-images"></i> Explore All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     LIVE MATERIAL & ESTIMATE CALCULATOR + LEAD CAPTURE
+     ========================================================================= -->
+<section class="section section-dark">
+    <div class="container grid-2">
+        <!-- Calculator -->
+        <div class="form-card">
+            <div class="section-tag">
+                <i class="fas fa-calculator"></i> Material Estimator
+            </div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Instant Pavement Calculator</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Calculate required block count and indicative material estimates based on your total pavement area.</p>
+
+            <div class="form-group">
+                <label class="form-label" for="calc-area">Total Paving Area (in Square Feet)</label>
+                <input type="number" id="calc-area" class="form-control" placeholder="e.g. 25000" min="100">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="calc-product">Select Product / Application</label>
+                <select id="calc-product" class="form-control">
+                    <option value="zigzag-80" data-rate="52">Zig-Zag Interlock 80mm (Heavy Axle Load - M40)</option>
+                    <option value="unipaver-60" data-rate="42">Unipaver I-Shape 60mm (Commercial Parking - M35)</option>
+                    <option value="hexagonal-60" data-rate="46">Hexagonal Paver 60mm (Architectural Driveway)</option>
+                    <option value="industrial-100" data-rate="68">Industrial Dock Paver 100mm (M50 Port Grade)</option>
+                    <option value="grass-80" data-rate="55">Eco Grass Paver 80mm (Green Parking)</option>
+                    <option value="chequered-25" data-rate="38">Chequered Tile 25mm (Basement Ramps)</option>
+                </select>
+            </div>
+
+            <div id="calc-result"></div>
+        </div>
+
+        <!-- Quick Direct Enquiry -->
+        <div class="form-card">
+            <div class="section-tag">
+                <i class="fas fa-paper-plane"></i> Direct Factory Inquiry
+            </div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #fff;">Get Official Quote</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Direct dispatch from our manufacturing plant. Connect with our engineering consultants.</p>
+
+            <form id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" name="name" class="form-control" required placeholder="e.g. Rajesh Sharma">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" name="phone" class="form-control" required placeholder="e.g. +91 98290 12345">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" name="email" class="form-control" placeholder="e.g. name@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City / Site Location *</label>
+                        <input type="text" name="city" class="form-control" required placeholder="e.g. Jaipur, Rajasthan">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Project Type</label>
+                        <select name="project_type" class="form-control">
+                            <option value="Industrial Pavement">Industrial Pavement / Factory Yard</option>
+                            <option value="Commercial Parking">Commercial Parking / Mall</option>
+                            <option value="Street Development">Street Development / Municipal</option>
+                            <option value="Government Infrastructure">Government Infrastructure / Highway</option>
+                            <option value="Residential Driveway">Residential / Villa Landscaping</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Estimated Quantity (Sq. Ft.)</label>
+                        <input type="text" name="quantity" class="form-control" placeholder="e.g. 50,000 Sq. Ft.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Project Details / Special Requirements</label>
+                    <textarea name="message" class="form-control" placeholder="Please mention site conditions, required thickness (60mm/80mm/100mm), and delivery schedule."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Submit Requirement
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
