@@ -1,0 +1,89 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Products Management | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Products Management</h1>
+        <p>Manage product catalog, specifications, thickness, compressive grades, and public availability.</p>
+    </div>
+    <a href="{{ url_for('admin_add_product') }}" class="btn btn-primary btn-sm">
+        <i class="fas fa-plus"></i> + Add Product
+    </a>
+</div>
+
+<div class="card-panel">
+    <div class="panel-header">
+        <h3>All Products ({{ products|length }})</h3>
+    </div>
+
+    <div class="table-responsive">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Thickness & Grade</th>
+                    <th>Compressive Strength</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in products %}
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="{{ prod.image_url }}" alt="{{ prod.name }}" class="item-thumb">
+                            <div>
+                                <strong>{{ prod.name }}</strong>
+                                {% if prod.featured %}
+                                <span style="color: var(--gold-light); font-size: 0.72rem; display: block;"><i class="fas fa-star"></i> Featured</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                    <td><span style="color: var(--text-sub);">{{ prod.category }}</span></td>
+                    <td>
+                        <div>{{ prod.thickness }}</div>
+                        <div style="font-size: 0.8rem; color: var(--gold-light);">{{ prod.grade }}</div>
+                    </td>
+                    <td>{{ prod.compressive_strength or 'N/A' }}</td>
+                    <td>
+                        <span class="badge {% if prod.available %}badge-completed{% else %}badge-cancelled{% endif %}">
+                            {{ 'Available' if prod.available else 'Disabled' }}
+                        </span>
+                    </td>
+                    <td style="font-size: 0.82rem; color: var(--text-dim);">
+                        {{ prod.created_at[:10] if prod.created_at else '' }}
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <a href="{{ url_for('product_details', product_id=prod.product_id) }}" target="_blank" class="btn-icon" title="View Public Page">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="{{ url_for('admin_edit_product', product_id=prod.product_id) }}" class="btn-icon edit" title="Edit Product">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form method="POST" action="{{ url_for('admin_delete_product', product_id=prod.product_id) }}" onsubmit="return confirm('Are you sure you want to permanently delete this product?');" style="display:inline;">
+                                <button type="submit" class="btn-icon delete" title="Delete Product">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" style="text-align:center; padding: 2.5rem; color: var(--text-dim);">
+                        No products created yet. Click "+ Add Product" to create your first item.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
