@@ -1,0 +1,104 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Edit Project: {{ project.project_name }} | Shiv Traders Admin{% endblock %}
+
+{% block content %}
+<div class="page-title-box">
+    <div>
+        <h1>Edit Project</h1>
+        <p>Updating execution profile for <strong>{{ project.project_name }}</strong>.</p>
+    </div>
+    <a href="{{ url_for('admin_projects') }}" class="btn btn-secondary btn-sm">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+</div>
+
+<div class="card-panel">
+    <form method="POST" action="{{ url_for('admin_edit_project', project_id=project.project_id) }}" enctype="multipart/form-data" class="admin-form-body">
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="project_name">Project Name *</label>
+                <input type="text" id="project_name" name="project_name" class="form-control-admin" required value="{{ project.project_name }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="category">Category *</label>
+                <select id="category" name="category" class="form-control-admin" required>
+                    <option value="Street Development" {% if project.category == 'Street Development' %}selected{% endif %}>Street Development</option>
+                    <option value="Parking Area" {% if project.category == 'Parking Area' %}selected{% endif %}>Parking Area</option>
+                    <option value="Market Development" {% if project.category == 'Market Development' %}selected{% endif %}>Market Development</option>
+                    <option value="Factory Construction" {% if project.category == 'Factory Construction' %}selected{% endif %}>Factory Construction</option>
+                    <option value="Interlock Tile Installation" {% if project.category == 'Interlock Tile Installation' %}selected{% endif %}>Interlock Tile Installation</option>
+                    <option value="Government Infrastructure" {% if project.category == 'Government Infrastructure' %}selected{% endif %}>Government Infrastructure</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="location">Location / City *</label>
+                <input type="text" id="location" name="location" class="form-control-admin" required value="{{ project.location }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="area_sqft">Paved Area (Sq. Ft.) *</label>
+                <input type="text" id="area_sqft" name="area_sqft" class="form-control-admin" required value="{{ project.area_sqft }}">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="completion_date">Completion Date *</label>
+                <input type="date" id="completion_date" name="completion_date" class="form-control-admin" required value="{{ project.completion_date }}">
+            </div>
+
+            <div class="form-group-admin">
+                <label for="status">Project Status *</label>
+                <select id="status" name="status" class="form-control-admin" required>
+                    <option value="Completed" {% if project.status == 'Completed' %}selected{% endif %}>Completed</option>
+                    <option value="In Progress" {% if project.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group-admin">
+            <label for="description">Scope of Work & Engineering Summary *</label>
+            <textarea id="description" name="description" class="form-control-admin" required>{{ project.description }}</textarea>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group-admin">
+                <label for="image">Replace Primary Site Photo</label>
+                <input type="file" id="image" name="image" class="form-control-admin preview-target" data-preview-id="project-preview" accept="image/*">
+                <div class="image-preview-box" id="project-preview">
+                    {% if project.image_url %}
+                    <img src="{{ project.image_url }}" alt="Current Photo">
+                    {% else %}
+                    <span style="color: var(--text-dim); font-size: 0.8rem;">No photo</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group-admin">
+                <label for="images">Add More Photos</label>
+                <input type="file" id="images" name="images" class="form-control-admin" multiple accept="image/*">
+                <p style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.35rem;">Upload additional site images for the project case study.</p>
+            </div>
+        </div>
+
+        <div style="margin: 1.5rem 0; padding: 1rem; background: var(--input-bg); border-radius: 8px;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; color: #fff; cursor: pointer;">
+                <input type="checkbox" name="featured" value="1" {% if project.featured %}checked{% endif %} style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
+                <span>Feature as Flagship Project on Homepage</span>
+            </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+            <a href="{{ url_for('admin_projects') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Update Project in Firestore
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
