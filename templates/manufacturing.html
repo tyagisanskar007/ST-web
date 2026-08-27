@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Manufacturing & Plant Infrastructure | Shiv Traders{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<section style="background: radial-gradient(circle at 50% 30%, rgba(205, 168, 81, 0.08) 0%, var(--bg-main) 70%); padding: 5rem 0 3rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container text-center">
+        <div class="section-tag"><i class="fas fa-industry"></i> High-Tonnage Automated Facility</div>
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Inside Our Manufacturing Plant</h1>
+        <p style="color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+            State-of-the-art hydraulic vibro-compression technology delivering unmatched block density, dimensional accuracy, and compressive resistance.
+        </p>
+    </div>
+</section>
+
+<!-- Manufacturing Stages -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag"><i class="fas fa-cogs"></i> Step-by-Step Excellence</div>
+            <h2>The Manufacturing Workflow</h2>
+            <p>From graded raw material batching to final hydraulic compaction and scientific humidity-controlled curing.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-balance-scale"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 01</div>
+                <h3>Automated Batching & Weighing</h3>
+                <p>Computerized micro-weighing of 53-Grade OPC cement, washed silica sands, and basalt gravel to ensure absolute consistency across every single batch.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-blender"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 02</div>
+                <h3>Intensive Planetary Mixing</h3>
+                <p>High-torque planetary pan mixers blend the dry aggregates with synthetic German iron-oxide pigments, ensuring UV-stable, deeply saturated colors.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 03</div>
+                <h3>120-Ton Hydraulic Vibro-Pressing</h3>
+                <p>Simultaneous multi-directional high-frequency vibration and 120-ton hydraulic down-pressure eliminate micro-voids, producing rock-solid density.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-temperature-high"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 04</div>
+                <h3>Controlled Steam & Humidity Curing</h3>
+                <p>Automated curing chambers maintain optimal humidity and temperature for complete cement hydration, reaching peak design strength without surface cracking.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-microscope"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 05</div>
+                <h3>In-House Lab Strength Testing</h3>
+                <p>Random sample blocks from every production cycle undergo 28-day digital compressive testing (CTM), water immersion, and abrasion index validation.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-truck-loading"></i></div>
+                <div style="color: var(--gold-light); font-weight: 800; font-family: var(--font-heading); margin-bottom: 0.5rem;">STAGE 06</div>
+                <h3>Palletization & Fleet Dispatch</h3>
+                <p>Blocks are machine-stacked on heavy-duty wooden pallets, stretch-wrapped for zero transport damage, and loaded onto our dedicated logistics fleet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Raw Material Integrity -->
+<section class="section section-dark">
+    <div class="container grid-2">
+        <div>
+            <div class="section-tag"><i class="fas fa-gem"></i> Premium Raw Materials</div>
+            <h2 style="font-size: 2.3rem; margin-bottom: 1.25rem;">Quality Starts with Uncompromising Sourcing</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7;">
+                The strength of precast concrete lies in the purity of its inputs. Shiv Traders sources only certified high-performance raw materials to ensure every paver exceeds CPWD and BIS benchmarks.
+            </p>
+            <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> <strong>Ultra 53-Grade OPC Cement:</strong> High early strength and low alkali content for durability.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Crushed Basalt Quartz Aggregates:</strong> Flakiness & elongation index strictly below 15%.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>Washed River Silica Sands:</strong> Free from silt, clay, and organic impurities.</li>
+                <li><i class="fas fa-check-circle"></i> <strong>German Synthetic Pigments:</strong> Non-fading, UV-resistant inorganic iron oxides.</li>
+            </ul>
+        </div>
+        <div>
+            <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-medium); box-shadow: var(--shadow-lg);">
+                <img src="{{ url_for('static', filename='images/manufacturing/service_paving.webp') }}" alt="Quality Paving">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plant Tour CTA -->
+<section class="section text-center">
+    <div class="container" style="max-width: 800px;">
+        <div class="section-tag"><i class="fas fa-map-marker-alt"></i> Plant Visit</div>
+        <h2 style="font-size: 2.3rem; margin-bottom: 1rem;">Schedule an On-Site Factory Inspection</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+            We welcome government tender officials, principal architects, and infrastructure project managers to inspect our automated manufacturing plant and witness live compressive batch testing.
+        </p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-calendar-check"></i> Book Plant Visit / Test Inspection
+        </a>
+    </div>
+</section>
+{% endblock %}
